@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 12:16:39 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/02 10:36:10 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/05 15:30:42 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,12 @@ void	*ft_memcpy(void *dest, const void *src, size_t n)
 	i = 0;
 	s = src;
 	d = dest;
-	if (!dest && !src)
-		return (0);
+	if (!s && !d)
+		return (NULL);
 	while (i < n)
 	{
 		*d++ = *s++;
 		i++;
 	}
-	d[i] = 0;
-	return (d);
+	return (dest);
 }

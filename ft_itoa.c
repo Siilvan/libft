@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 14:30:22 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/02 12:12:09 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/05 14:28:42 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,60 +17,41 @@ static	int	ft_digit_count(int n)
 	int	nlen;
 
 	nlen = 0;
-	if (n == 0)
-		return (1);
-	while (n > 0)
+	if (n <= 0)
+		nlen = 1;
+	while (n != 0)
 	{
-		nlen++;
 		n /= 10;
+		nlen++;
 	}
 	return (nlen);
 }
 
-static char	*ft_nbrs(int n)
-{
-	int		nlen;
-	int		flag;
-	char	*strn;
-
-	flag = 0;
-	if (n < 0)
-	{
-		n *= -1;
-		flag = 1;
-	}
-	nlen = ft_digit_count(n) + flag;
-	strn = malloc(nlen + flag);
-	if (!strn)
-		return (NULL);
-	if (flag)
-		strn[0] = '-';
-	while (n > 0)
-	{
-		strn[nlen - 1] = 48 + (n % 10);
-		n /= 10;
-		nlen--;
-	}
-	return (strn);
-}
-
 char	*ft_itoa(int n)
 {
-	int		flag;
-	char	*strn;
+	char		*strn;
+	long int	nbr;
+	int			nlen;
+	int			flag;
 
 	flag = 0;
-	if (n == -2147483648)
+	nlen = ft_digit_count(n);
+	nbr = n;
+	if (nbr < 0)
 	{
-		strn = malloc(12);
-		ft_strlcpy(strn, "-2147483648", 12);
-		return (strn);
+		nbr = -nbr;
+		flag = 1;
 	}
-	else if (n == 0)
+	strn = malloc(nlen + 1);
+	if (!strn)
+		return (NULL);
+	strn[nlen--] = 0;
+	while (nlen >= 0)
 	{
-		strn = malloc(2);
-		ft_strlcpy(strn, "0", 2);
-		return (strn);
+		strn[nlen--] = 48 + (nbr % 10);
+		nbr /= 10;
 	}
-	return (ft_nbrs(n));
+	if (flag)
+		strn[0] = '-';
+	return (strn);
 }

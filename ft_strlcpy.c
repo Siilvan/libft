@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/29 15:17:16 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/09/29 15:46:49 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/05 09:48:36 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,16 @@
 
 size_t	ft_strlcpy(char *dst, const char *src, size_t size)
 {
-	unsigned long	i;
+	size_t	i;
 
 	i = 0;
-	while (i < (size - 1))
+	if (size == 0)
+		return (ft_strlen(src));
+	while (i < (size - 1) && src[i])
 	{
 		dst[i] = src[i];
 		i++;
 	}
-	dst[size] = 0;
+	dst[i] = 0;
 	return (ft_strlen(src));
 }

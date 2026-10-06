@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/09/30 09:40:41 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/09/30 09:44:52 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/05 15:13:09 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*ft_strrchr(const char *s, int c)
 	ptr = (char *)s;
 	while (slen >= 0)
 	{
-		if (ptr[slen] == c)
+		if (ptr[slen] == (char)c)
 			return (ptr + slen);
 		slen--;
 	}

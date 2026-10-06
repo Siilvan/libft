@@ -6,7 +6,7 @@
 /*   By: sgroenve <sgroenve@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/10/01 10:17:56 by sgroenve          #+#    #+#             */
-/*   Updated: 2026/10/01 14:40:31 by sgroenve         ###   ########.fr       */
+/*   Updated: 2026/10/05 13:02:19 by sgroenve         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,27 +36,40 @@ static int	ft_word_count(char const *s, char c)
 	return (count);
 }
 
+static char	**ft_free_me(char **ptrarray, int j)
+{
+	while (j > 0)
+	{
+		j--;
+		free(ptrarray[j]);
+	}
+	free(ptrarray);
+	return (NULL);
+}
+
 char	**ft_split(char const *s, char c)
 {
-	int		i;
 	int		j;
 	int		next_c;
 	char	**ptrarray;
 
-	i = 0;
 	j = 0;
 	ptrarray = (char **)malloc((ft_word_count(s, c) + 1) * sizeof(char *));
-	if (!ptrarray)
+	if (!ptrarray || !s)
 		return (NULL);
-	while (s[i])
+	while (*s)
 	{
-		while (s[i] == c)
-			i++;
+		while (*s == c && *s)
+			s++;
+		if (!*s)
+			break ;
 		next_c = 0;
-		while (s[i + next_c] != c && s[i + next_c])
+		while (s[next_c] != c && s[next_c])
 			next_c++;
-		ptrarray[j] = ft_substr(s + i, 0, next_c + 1);
-		i += next_c;
+		ptrarray[j] = ft_substr(s, 0, next_c);
+		if (ptrarray[j] == NULL)
+			return (ft_free_me(ptrarray, j));
+		s += next_c;
 		j++;
 	}
 	ptrarray[j] = 0;
