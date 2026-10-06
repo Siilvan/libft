@@ -12,7 +12,7 @@ By making the functions yourself instead of using the already made libraries, yo
 ## Instructions
 
 ### Compilation
-The project has a `Makefile` to automate the compilation process. The available commands are:
+The project has a `Makefile` to make compiling easier. The available commands are:
 
 *   `make` - Compiles the library functions and Creates `libft.a`.
 *   `make clean` - Deletes all object files (`.o`).
@@ -20,7 +20,7 @@ The project has a `Makefile` to automate the compilation process. The available 
 *   `make re` - Recompiles the entire project.
 
 ### Technical Integration
-To  be able to use the library in another C project, you have to include the header file in your source code:
+To  be able to use the library in another C project, you have to include the header file in your code:
 ```c
 #include "libft.h"
 ```
@@ -32,12 +32,12 @@ cc main.c -L. -lft -o my_program
 
 ---
 
-## Library Features & Detailed Description
+## Library Features
 
-The library consists of three main parts, providing comprehensive tools for everyday C programming:
+The library consists of three parts:
 
 ### 1. Libc Functions
-These are copies of the standard C library functions, strictly following their definitions in the man page:
+These are copies of the standard C library functions, strictly following their definitions as in the man page:
 *   **Character Checks:** `ft_isalpha`, `ft_isdigit`, `ft_isalnum`, `ft_isascii`, `ft_isprint`.
 *   **Character Case Conversion:** `ft_toupper`, `ft_tolower`.
 *   **String Manipulation:** 
@@ -66,8 +66,8 @@ These functions are not included in libc, or exist in a different form:
 *   `ft_strmapi` / `ft_striteri` - Applies a custom function to each character of a string.
 *   `ft_putchar_fd` / `ft_putstr_fd` / `ft_putendl_fd` / `ft_putnbr_fd` - Outputs characters, strings, or numbers to a specific file descriptor.
 
-### 3. Bonus Functions (Linked Lists)
-A set of functions to manipulate single-linked lists:
+### 3. linked Lists
+Functions to work with single-linked lists:
 *   `ft_lstnew` - Allocates a new list node.
 *   `ft_lstadd_front` / `ft_lstadd_back` - Puts an node at the beginning or end of a list.
 *   `ft_lstsize` - Counts the amount of nodes in a list.
